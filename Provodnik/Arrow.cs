@@ -6,11 +6,12 @@ namespace Provodnik
 {
     public class Arrow
     {
-        public int min;
+        
+        public const int min = 1;
         public int max;
-        public Arrow()
+        public Arrow(int countOfDirs, int countOfFilse)
         {
-            
+            max = countOfDirs + countOfFilse;
         }
     }
 }
