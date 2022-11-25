@@ -73,6 +73,8 @@ namespace Provodnik
 
         static public void Out()
         {
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("  Имя" + '\t' + '\t' + '\t' + '\t' +
                "|Дата изменения" + '\t' + '\t' + '\t' + '\t' +
                "|Тип" + '\t' + '\t' +
