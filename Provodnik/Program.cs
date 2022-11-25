@@ -28,6 +28,10 @@ namespace Provodnik
             Console.SetCursorPosition(0, pointerPosistion);
             Console.WriteLine(arrow);
         }
+        static  public void Print()
+        {
+            Console.WriteLine("privet");
+        }
         static public void Enter()
         {
             
