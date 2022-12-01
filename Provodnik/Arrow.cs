@@ -13,5 +13,14 @@ namespace Provodnik
         {
             max = countOfDirs + countOfFilse;
         }
+        public void Down(int pointerPosition)
+        {
+            Console.SetCursorPosition(0, pointerPosition);
+            Console.WriteLine("  ");
+            pointerPosition++;
+            Console.SetCursorPosition(0, pointerPosition);
+            Console.WriteLine("->");
+            Console.WriteLine();
+        }
     }
 }

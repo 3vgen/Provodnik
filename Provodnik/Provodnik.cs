@@ -76,7 +76,7 @@ namespace Provodnik
         {
             Console.WriteLine("  Имя" + '\t' + '\t' + '\t' + '\t' +
                "|Дата изменения" + '\t' + '\t' + '\t' + '\t' +
-               "|Тип" + '\t' + '\t' +
+               "  |Тип" + '\t' + '\t' +
                "|Размер   |");
             dirs = new List<string>(Directory.EnumerateDirectories(path));
             files = new List<string>(Directory.EnumerateFiles(path));
@@ -90,7 +90,7 @@ namespace Provodnik
                     shortName = shortName.Substring(0, 29);
                     shortName += "...";
                 }
-                Console.WriteLine("{0,31}{1,21}{2,30}", shortName, dr.LastWriteTime, dr.Attributes);
+                Console.WriteLine("  {0,31}{1,21}{2,30}", shortName, dr.LastWriteTime, dr.Attributes);
                 //Console.WriteLine($"  {dr.Name}\t\t\t\t {dr.LastWriteTime}\t\t\t{dr.Attributes}");
 
             }
@@ -103,7 +103,9 @@ namespace Provodnik
                     shortName = shortName.Substring(0, 29);
                     shortName += "...";
                 }
-                Console.WriteLine("{0,31}{1,21}{2,30}{3,15}", shortName, fl.LastWriteTime, fl.Extension, fl.Length);
+     
+                Console.WriteLine("  {0,31}{1,21}{2,30}{3,15}", shortName, fl.LastWriteTime, fl.Extension, fl.Length);
+
             }
         }
     }
