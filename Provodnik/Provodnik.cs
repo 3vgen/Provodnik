@@ -8,9 +8,8 @@ namespace Provodnik
     public static class Provodnik
     {
         public static ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
-        private static List<string> dirs; //список директорий 
-        private static List<string> files;
-        static int Length = dirs.Count + files.Count;
+        public static List<string> dirs; //список директорий 
+        public static List<string> files;
         private static DirectoryInfo dr;
         private static FileInfo fl;
         static public string path = @"C:\Users\МБОУ ЦО 2\Desktop\учеба";
@@ -81,19 +80,30 @@ namespace Provodnik
                "|Размер   |");
             dirs = new List<string>(Directory.EnumerateDirectories(path));
             files = new List<string>(Directory.EnumerateFiles(path));
+            string shortName;
             foreach (var item in dirs)
             {
-
                 dr = new DirectoryInfo(item);
-                Console.WriteLine("{0,31}{1,21}{2,30}", dr.Name, dr.LastWriteTime, dr.Attributes);
+                shortName = dr.Name;
+                if (shortName.Length > 32)
+                {
+                    shortName = shortName.Substring(0, 29);
+                    shortName += "...";
+                }
+                Console.WriteLine("{0,31}{1,21}{2,30}", shortName, dr.LastWriteTime, dr.Attributes);
                 //Console.WriteLine($"  {dr.Name}\t\t\t\t {dr.LastWriteTime}\t\t\t{dr.Attributes}");
 
             }
             foreach (var item in files)
             {
-
                 fl = new FileInfo(item);
-                Console.WriteLine("{0,31}{1,21}{2,30}{3,15}", fl.Name, fl.LastWriteTime, fl.Extension, fl.Length);
+                shortName = fl.Name;
+                if (shortName.Length > 32)
+                {
+                    shortName = shortName.Substring(0, 29);
+                    shortName += "...";
+                }
+                Console.WriteLine("{0,31}{1,21}{2,30}{3,15}", shortName, fl.LastWriteTime, fl.Extension, fl.Length);
             }
         }
     }
