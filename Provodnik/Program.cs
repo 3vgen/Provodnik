@@ -8,33 +8,50 @@ namespace Provodnik
     {
         static void Main(string[] args)
         {
+
+            //Provodnik.ChooseDrive();
+            //Provodnik.OpenDirectory();
             Provodnik.Out();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref Provodnik.pointerPosistion);
             while (true)
             {
                 Provodnik.keyInfo = Console.ReadKey();
-                //Console.Clear();
-                //Provodnik.Out();
                 if(Provodnik.keyInfo.Key == ConsoleKey.Enter)
                 {
-                     Provodnik.Enter();
+                    try
+                    {
+                        if (Provodnik.pointerPosistion < Provodnik.dirs.Count + 2)
+                        {
+                            Provodnik.OpenDirectory();
+                            ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
+                        }
+                        else
+                        {
+                            Provodnik.OpenFile();
+                        }
+                    }
+                    catch
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Нет доступа к данной папке или файлу");
+                    }
+
                 }
-                if(Provodnik.keyInfo.Key == ConsoleKey.Escape)
+                if (Provodnik.keyInfo.Key == ConsoleKey.Escape)
                 {
                     Provodnik.Escape();
-                }
-                if(Provodnik.keyInfo.Key==ConsoleKey.DownArrow)
-                {
                     ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
+
+                }
+                if (Provodnik.keyInfo.Key==ConsoleKey.DownArrow)
+                {
                     ar.Down(ref Provodnik.pointerPosistion);
               
                 }
                 if (Provodnik.keyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
                     ar.Up(ref Provodnik.pointerPosistion);
-                    
                 }
             }
             
