@@ -4,18 +4,17 @@ using System;
 
 namespace Provodnik
 {
-    
     class Program
     {
         static void Main(string[] args)
         {
             Provodnik.Out();
-            Console.SetCursorPosition(0, 1);
-            Console.WriteLine("->");
+            Arrow ar = new Arrow();
+            ar.SetCursorToStart(ref Provodnik.pointerPosistion);
             while (true)
             {
                 Provodnik.keyInfo = Console.ReadKey();
-                Console.Clear();
+                //Console.Clear();
                 //Provodnik.Out();
                 if(Provodnik.keyInfo.Key == ConsoleKey.Enter)
                 {
@@ -25,9 +24,17 @@ namespace Provodnik
                 {
                     Provodnik.Escape();
                 }
-                if(Provodnik.keyInfo.Key==ConsoleKey.DownArrow||Provodnik.keyInfo.Key == ConsoleKey.UpArrow)
+                if(Provodnik.keyInfo.Key==ConsoleKey.DownArrow)
                 {
-                    Provodnik.UpDown();
+                    ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
+                    ar.Down(ref Provodnik.pointerPosistion);
+              
+                }
+                if (Provodnik.keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
+                    ar.Up(ref Provodnik.pointerPosistion);
+                    
                 }
             }
             
