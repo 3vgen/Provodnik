@@ -8,8 +8,8 @@ namespace Provodnik
     {
         static void Main(string[] args)
         {
-
-            Provodnik.ShowDirectoryContents();
+            Provodnik.ChooseDrive();
+            //Provodnik.ShowDirectoryContents();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref Provodnik.pointerPosistion);
             while (true)
@@ -20,7 +20,12 @@ namespace Provodnik
                 {
                     try
                     {
-                        if (Provodnik.pointerPosistion < Provodnik.dirs.Count + 2)
+                        if (Provodnik.path == "")
+                        {
+                            Provodnik.OpenDrive();
+                            ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
+                        }
+                        else if (Provodnik.pointerPosistion < Provodnik.dirs.Count + 2)
                         {
                             Provodnik.OpenDirectory();
                             ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
@@ -37,18 +42,17 @@ namespace Provodnik
                     }
 
                 }
-                if (Provodnik.keyInfo.Key == ConsoleKey.Escape)
+                else if (Provodnik.keyInfo.Key == ConsoleKey.Escape)
                 {
+                    if (Provodnik.path == "") Provodnik.OpenDrive(); 
                     Provodnik.ReturnToBack();
-                    ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
-
                 }
-                if (Provodnik.keyInfo.Key==ConsoleKey.DownArrow)
+                else if (Provodnik.keyInfo.Key==ConsoleKey.DownArrow)
                 {
                     ar.Down(ref Provodnik.pointerPosistion);
               
                 }
-                if (Provodnik.keyInfo.Key == ConsoleKey.UpArrow)
+                else if (Provodnik.keyInfo.Key == ConsoleKey.UpArrow)
                 {
                     ar.Up(ref Provodnik.pointerPosistion);
                 }

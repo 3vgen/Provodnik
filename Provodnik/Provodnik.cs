@@ -15,13 +15,17 @@ namespace Provodnik
 
         private static DirectoryInfo dir; 
         private static FileInfo fl;
-        static public string path = @"C:\Users\МБОУ ЦО 2\Desktop\учеба";
+        //static public string path = @"C:\Users\МБОУ ЦО 2\Desktop\учеба";
+        static public string path = @"";
+
         static public int pointerPosistion = 1;
 
         static public void ChooseDrive()
         {
+            path = @"";
+            Console.Clear();
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine("Выберите диск");
+            Console.WriteLine("  Выберите диск");
            foreach(var item in allDrives)
             {
                 Console.WriteLine($"  {item.Name}");
@@ -30,7 +34,7 @@ namespace Provodnik
         }
         static public void OpenDrive()
         {
-            path = allDrives[pointerPosistion + 2].Name;
+            path = allDrives[pointerPosistion - 2].Name;
             ShowDirectoryContents();
         }
         static public void OpenDirectory()
@@ -63,7 +67,8 @@ namespace Provodnik
                 path += '\\';
             }
             if (partOfPath.Length != 2) path = path.TrimEnd('\\');
-            ShowDirectoryContents();
+            if (path.Length == 3) ChooseDrive();
+            else ShowDirectoryContents();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref pointerPosistion);
         }
