@@ -9,15 +9,13 @@ namespace Provodnik
         static void Main(string[] args)
         {
 
-            
-
-           
             Provodnik.ShowDirectoryContents();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref Provodnik.pointerPosistion);
             while (true)
             {
                 Provodnik.keyInfo = Console.ReadKey();
+               
                 if(Provodnik.keyInfo.Key == ConsoleKey.Enter)
                 {
                     try
