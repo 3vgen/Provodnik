@@ -9,9 +9,10 @@ namespace Provodnik
         static void Main(string[] args)
         {
 
-            //Provodnik.ChooseDrive();
-            //Provodnik.OpenDirectory();
-            Provodnik.Out();
+            
+
+           
+            Provodnik.ShowDirectoryContents();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref Provodnik.pointerPosistion);
             while (true)
@@ -40,7 +41,7 @@ namespace Provodnik
                 }
                 if (Provodnik.keyInfo.Key == ConsoleKey.Escape)
                 {
-                    Provodnik.Escape();
+                    Provodnik.ReturnToBack();
                     ar = new Arrow(Provodnik.dirs.Count, Provodnik.files.Count);
 
                 }

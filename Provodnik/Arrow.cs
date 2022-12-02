@@ -7,11 +7,14 @@ namespace Provodnik
     public class Arrow
     {
         
-        public const int min = 2;
+        public int upperBound = 2;
+        public int bottomBound;
         public int max;
+        
         public Arrow(int countOfDirs, int countOfFilse)
         {
-            max = countOfDirs + countOfFilse+min;
+            max = countOfDirs + countOfFilse+upperBound;
+
         }
         public Arrow()
         {
@@ -19,8 +22,8 @@ namespace Provodnik
         }
         public void SetCursorToStart(ref int pointerPosition)
         {
-            pointerPosition = min;
-            Console.SetCursorPosition(0, min);
+            pointerPosition = upperBound;
+            Console.SetCursorPosition(0, upperBound);
             Console.WriteLine("->");
         }
         public void Down(ref int pointerPosition)
@@ -36,7 +39,7 @@ namespace Provodnik
         }
         public void Up(ref int pointerPosition)
         {
-            if (pointerPosition != min)
+            if (pointerPosition != upperBound)
             {
                 Console.SetCursorPosition(0, pointerPosition);
                 Console.WriteLine("  ");

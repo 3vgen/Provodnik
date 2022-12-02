@@ -26,10 +26,12 @@ namespace Provodnik
             {
                 Console.WriteLine($"  {item.Name}");
             }
+
         }
         static public void OpenDrive()
         {
             path = allDrives[pointerPosistion + 2].Name;
+            ShowDirectoryContents();
         }
         static public void OpenDirectory()
         {
@@ -40,7 +42,7 @@ namespace Provodnik
                     Console.Clear();
                     
                     path = dirs[i - 1];
-                    Out();
+                    ShowDirectoryContents();
                     break;
                 }
             }
@@ -51,7 +53,7 @@ namespace Provodnik
         {
             Process.Start(new ProcessStartInfo(files[pointerPosistion-2]) { UseShellExecute = true});
         }
-        static public void Escape()
+        static public void ReturnToBack()
         {
             string[] partOfPath = path.Split('\\');
             path = @"";
@@ -60,15 +62,15 @@ namespace Provodnik
                 path += partOfPath[i];
                 path += '\\';
             }
-            path = path.TrimEnd('\\');
-            Out();
+            if (partOfPath.Length != 2) path = path.TrimEnd('\\');
+            ShowDirectoryContents();
             Arrow ar = new Arrow();
             ar.SetCursorToStart(ref pointerPosistion);
         }
 
 
 
-        static public void Out()
+        static public void ShowDirectoryContents()
         {
             Console.Clear();
             Console.WriteLine(path);
